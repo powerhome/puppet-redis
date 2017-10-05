@@ -215,6 +215,8 @@ define redis::server (
     }
   }
 
+  notify { "service_file = '${service_file}', has_systemd = '${has_systemd}'": }
+
   if $has_systemd {
     exec { "systemd_service_server_${redis_name}_preset":
       command     => "/bin/systemctl preset redis-server_${redis_name}.service",
